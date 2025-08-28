@@ -699,4 +699,32 @@ const SummaryTab = () => {
                       stroke={
                         selectedDimension === entry.name ? "#000" : "#fff"
                       }
-                      strokeWidth={selecte
+                      strokeWidth={selectedDimension === entry.name ? 3 : 1}
+                      cursor="pointer"
+                    />
+                  ))}
+                </Pie>
+                <Tooltip content={<DonutTooltip />} />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="donut-labels">
+              {getMetricsData().map((entry) => (
+                <div
+                  key={entry.name}
+                  className={`donut-label ${
+                    selectedDimension === entry.name ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedDimension(entry.name)}
+                >
+                  <span style={{ backgroundColor: COLORS[entry.name] }}></span>
+                  {entry.name}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default SummaryTab;
